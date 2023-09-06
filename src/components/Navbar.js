@@ -17,6 +17,9 @@ function Navbar() {
         <NavLink activeClassName="active" to="/goal">
           Goal
         </NavLink>
+        <NavLink activeClassName="active" to="/user-page">
+          User
+        </NavLink>
       </nav>
     </div>
   );
