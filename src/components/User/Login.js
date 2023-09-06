@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../../config/axios-config";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(``, formData);
+      const response = await api.post(`/login`, formData);
 
       if (response.status === 200) {
         console.log("Success");
