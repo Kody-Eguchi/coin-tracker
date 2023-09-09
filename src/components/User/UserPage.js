@@ -9,10 +9,10 @@ function UserPage() {
 
   useEffect(() => {
     const token = Cookies.get("token");
-    console.log(token, "🔑");
+
     if (token) {
       api
-        .get("/users", {
+        .get("profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -25,6 +25,8 @@ function UserPage() {
         });
     }
   }, []);
+
+  console.log(user);
 
   return (
     <div>

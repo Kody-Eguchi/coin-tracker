@@ -5,21 +5,11 @@ function Navbar() {
   return (
     <div>
       <nav>
-        <NavLink exact activeClassName="active" to="/">
-          Home
-        </NavLink>
-        <NavLink activeClassName="active" to="/add-transaction">
-          Add Transaction
-        </NavLink>
-        <NavLink activeClassName="active" to="/transaction-history">
-          Transaction History
-        </NavLink>
-        <NavLink activeClassName="active" to="/goal">
-          Goal
-        </NavLink>
-        <NavLink activeClassName="active" to="/user-page">
-          User
-        </NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/add-transaction">Add Transaction</NavLink>
+        <NavLink to="/transaction-history">Transaction History</NavLink>
+        <NavLink to="/goal">Goal</NavLink>
+        <NavLink to="/user-page">User</NavLink>
       </nav>
     </div>
   );
