@@ -12,7 +12,7 @@ function UserPage() {
     console.log(token, "🔑");
     if (token) {
       api
-        .get("/user", {
+        .get("/users", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
