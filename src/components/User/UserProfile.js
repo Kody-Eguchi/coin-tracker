@@ -1,12 +1,13 @@
 import React from "react";
+import { useAuth } from "../../hooks/useAuth";
 
-function UserProfile(props) {
-  const { username, email } = props.user;
+function UserProfile() {
+  const { user } = useAuth();
   return (
     <div>
       <h1>User Profile!!!</h1>
-      <p>{username}</p>
-      <p>{email}</p>
+      <p>{user.username}</p>
+      <p>{user.email}</p>
     </div>
   );
 }

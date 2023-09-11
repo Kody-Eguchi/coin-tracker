@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import api from "../../config/axios-config";
+import api from "../config/axios-config";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,17 +24,9 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await api.post(`/login`, formData);
-
-      if (response.status === 200) {
-        console.log("Success");
-      } else {
-        console.error("login failed");
-      }
-    } catch (error) {
-      console.log("Error", error);
-    }
+    const { email, password } = formData;
+    await login(email, password);
+    navigate("/user-page");
   };
 
   return (
