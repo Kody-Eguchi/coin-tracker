@@ -7,7 +7,7 @@ function UserPage() {
   const { isLoggedIn, user, fetchUserData } = useAuth();
   useEffect(() => {
     fetchUserData();
-  }, [fetchUserData]);
+  }, []);
   return (
     <div>
       <h1>User Page</h1>
