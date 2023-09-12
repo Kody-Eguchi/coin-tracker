@@ -10,7 +10,13 @@ function TransactionHistory() {
     });
   }, []);
 
-  const { amount, description, transaction_date } = transactionHistory;
+  const {
+    amount,
+    description,
+    transaction_date,
+    category: { category_name, type },
+    frequency: { frequency_name },
+  } = transactionHistory;
 
   return (
     <div>
@@ -19,6 +25,9 @@ function TransactionHistory() {
         <p>amount: {amount}</p>
         <p>description: {description}</p>
         <p>transaction date: {transaction_date}</p>
+        <p>Spending Category: {category_name}</p>
+        <p>Type: {type}</p>
+        <p>frequency: {frequency_name}</p>
       </div>
     </div>
   );
