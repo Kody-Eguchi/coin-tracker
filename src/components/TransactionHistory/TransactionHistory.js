@@ -1,34 +1,33 @@
 import { useEffect, useState } from "react";
 import { fetchTransactionHistory } from "../helper/transactionHistoryHelpers";
+import TransactionHistoryItem from "./TransactionHistoryItem";
 
 function TransactionHistory() {
   const [transactionHistory, setTransactionHistory] = useState([]);
 
   useEffect(() => {
     fetchTransactionHistory((data) => {
-      setTransactionHistory(data);
+      if (Array.isArray(data)) {
+        // If it's an array, set it directly
+        setTransactionHistory(data);
+      } else if (typeof data === "object") {
+        // If it's an object, wrap it in an array
+        setTransactionHistory([data]);
+      }
     });
   }, []);
 
-  const {
-    amount,
-    description,
-    transaction_date,
-    category: { category_name, type },
-    frequency: { frequency_name },
-  } = transactionHistory;
-
+  console.log(transactionHistory);
   return (
     <div>
       <h1>TransactionHistory</h1>
-      <div>
-        <p>amount: {amount}</p>
-        <p>description: {description}</p>
-        <p>transaction date: {transaction_date}</p>
-        <p>Spending Category: {category_name}</p>
-        <p>Type: {type}</p>
-        <p>frequency: {frequency_name}</p>
-      </div>
+      {transactionHistory.length > 0 ? (
+        transactionHistory.map((transaction, index) => (
+          <TransactionHistoryItem key={index} transaction={transaction} />
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
