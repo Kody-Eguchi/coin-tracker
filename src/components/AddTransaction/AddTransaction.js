@@ -10,6 +10,8 @@ function AddTransaction() {
     frequencyId: "",
   });
 
+  const [transactionStatus, setTransactionStatus] = useState("default");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -22,19 +24,37 @@ function AddTransaction() {
     e.preventDefault();
     const token = Cookies.get("token");
     try {
-      const response = await api.post("./transaction/create", formData, {
+      const response = await api.post("./transactions/create", formData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
-      if (response.status === 200) {
+      if (response.status === 201) {
         console.log("Transaction created successfully");
+        setFormData({
+          amount: "",
+          description: "",
+          categoryId: "",
+          frequencyId: "",
+        });
+        setTransactionStatus("success");
+        setTimeout(() => {
+          setTransactionStatus("default");
+        }, 3000);
       } else {
         console.error("Error creating transaction");
+        setTransactionStatus("fail");
+        setTimeout(() => {
+          setTransactionStatus("default");
+        }, 3000);
       }
     } catch (error) {
       console.error("Error creating transaction:", error);
+      setTransactionStatus("fail");
+      setTimeout(() => {
+        setTransactionStatus("default");
+      }, 3000);
     }
   };
 
@@ -42,6 +62,11 @@ function AddTransaction() {
     <div>
       <div>
         <h2>Add Transaction</h2>
+        {transactionStatus === "success" ? (
+          <p>Transaction is added</p>
+        ) : transactionStatus === "fail" ? (
+          <p>Transaction failed</p>
+        ) : null}
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="amount">Amount(CAD):</label>
@@ -74,8 +99,8 @@ function AddTransaction() {
               required
             >
               <option value="">Select a category</option>
-              <option value="1">Category 1</option>
-              <option value="2">Category 2</option>
+              <option value="1">Groceries</option>
+              <option value="2">Salary</option>
             </select>
           </div>
           <div>
@@ -88,8 +113,9 @@ function AddTransaction() {
               required
             >
               <option value="">Select a frequency</option>
-              <option value="1">Frequency 1</option>
-              <option value="2">Frequency 2</option>
+              <option value="1">Daily</option>
+              <option value="2">Weekly</option>
+              <option value="3">Monthly</option>
             </select>
           </div>
           <div>
