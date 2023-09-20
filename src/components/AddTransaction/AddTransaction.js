@@ -24,7 +24,7 @@ function AddTransaction() {
     e.preventDefault();
     const token = Cookies.get("token");
     try {
-      const response = await api.post("./transactions/create", formData, {
+      const response = await api.post("/transactions/create", formData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
