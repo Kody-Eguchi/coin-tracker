@@ -6,12 +6,37 @@ import Cookies from "js-cookie";
 
 function TransactionHistory() {
   const [transactionHistory, setTransactionHistory] = useState([]);
+  const [spendingTotal, setSpendingTotal] = useState(0);
+  const [incomeTotal, setIncomeTotal] = useState(0);
+  const [currentBalance, setCurrentBalance] = useState(0);
 
   useEffect(() => {
     fetchTransactionHistory((data) => {
       setTransactionHistory(data);
     });
   }, []);
+
+  useEffect(() => {
+    let newSpendingTotal = 0;
+    let newIncomeTotal = 0;
+
+    transactionHistory.forEach((transaction) => {
+      const categoryType = transaction.category.type;
+      const amount = parseFloat(transaction.amount);
+
+      if (categoryType === "Spending") {
+        newSpendingTotal += amount;
+      } else if (categoryType === "Income") {
+        newIncomeTotal += amount;
+      }
+    });
+
+    setSpendingTotal(newSpendingTotal);
+    setIncomeTotal(newIncomeTotal);
+
+    const newCurrentBalance = newIncomeTotal - newSpendingTotal;
+    setCurrentBalance(newCurrentBalance);
+  }, [transactionHistory]);
 
   console.log(transactionHistory);
 
@@ -51,6 +76,11 @@ function TransactionHistory() {
   return (
     <div>
       <h1>TransactionHistory</h1>
+      <div>
+        <p>Spending Total: {spendingTotal}</p>
+        <p>Income Total: {incomeTotal}</p>
+        <p>Current Balance: {currentBalance}</p>
+      </div>
       {transactionHistory.length > 0 ? (
         transactionHistory.map((transaction, index) => (
           <TransactionHistoryItem
