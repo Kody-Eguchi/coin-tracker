@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchGoals } from "../helper/goalHelper";
 import GoalItem from "./GoalItem";
 import { fetchTransactionHistory } from "../helper/transactionHistoryHelpers";
+import GoalForm from "./GoalForm";
 
 function Goal() {
   const [goals, setGoals] = useState([]);
@@ -43,6 +44,7 @@ function Goal() {
   return (
     <div>
       <h1>Goals</h1>
+      <GoalForm />
       {goals.length > 0 ? (
         goals.map((goal, index) => (
           <GoalItem key={index} goal={goal} currentBalance={currentBalance} />
