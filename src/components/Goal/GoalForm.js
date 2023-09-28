@@ -21,16 +21,14 @@ function GoalForm() {
     e.preventDefault();
     const token = Cookies.get("token");
     try {
-      const response = await api.post("/api/goals", {
+      const response = await api.post("/goal", goalData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-
-        body: JSON.stringify(goalData),
       });
 
-      if (response.ok) {
+      if (response.status === 201) {
         console.log("Goal created successfully");
       } else {
         console.error("Failed to create goal");
