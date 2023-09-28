@@ -44,7 +44,7 @@ function Goal() {
   return (
     <div>
       <h1>Goals</h1>
-      <GoalForm />
+      <GoalForm setGoals={setGoals} />
       {goals.length > 0 ? (
         goals.map((goal, index) => (
           <GoalItem key={index} goal={goal} currentBalance={currentBalance} />

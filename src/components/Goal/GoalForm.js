@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import api from "../../config/axios-config";
 import Cookies from "js-cookie";
+import { fetchGoals } from "../helper/goalHelper";
 
-function GoalForm() {
+function GoalForm({ setGoals }) {
   const [goalData, setGoalData] = useState({
     description: "",
     goal_amount: "",
@@ -30,6 +31,9 @@ function GoalForm() {
 
       if (response.status === 201) {
         console.log("Goal created successfully");
+        fetchGoals((data) => {
+          setGoals(data);
+        });
       } else {
         console.error("Failed to create goal");
       }
