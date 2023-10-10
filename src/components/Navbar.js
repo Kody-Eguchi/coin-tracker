@@ -22,7 +22,10 @@ function Navbar() {
             <NavLink to="/user-page">User</NavLink>
           </div>
         ) : (
-          <NavLink to="/login">Log In</NavLink>
+          <div>
+            <NavLink to="/login">Log In</NavLink>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </div>
         )}
       </nav>
     </div>

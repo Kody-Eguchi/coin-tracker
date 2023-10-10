@@ -7,6 +7,7 @@ import TransactionHistory from "./components/TransactionHistory/TransactionHisto
 import Goal from "./components/Goal/Goal";
 import UserPage from "./components/User/UserPage";
 import Login from "./components/Login";
+import SignUp from "./components/Signup";
 import { AuthProvider } from "./hooks/useAuth";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/goal" element={<Goal />} />
           <Route path="/user-page" element={<UserPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </AuthProvider>
     </div>
