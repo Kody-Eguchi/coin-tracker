@@ -21,7 +21,7 @@ const SignUp = () => {
     e.preventDefault();
     const token = Cookies.get("token");
     try {
-      const response = await api.post("/api/signup", formData, {
+      const response = await api.post("/signup", formData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
