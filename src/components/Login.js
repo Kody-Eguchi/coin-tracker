@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import api from "../config/axios-config";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
