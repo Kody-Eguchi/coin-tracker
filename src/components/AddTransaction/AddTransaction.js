@@ -59,69 +59,85 @@ function AddTransaction() {
   };
 
   return (
-    <div>
-      <div>
-        <h2>Add Transaction</h2>
-        {transactionStatus === "success" ? (
-          <p>Transaction is added</p>
-        ) : transactionStatus === "fail" ? (
-          <p>Transaction failed</p>
-        ) : null}
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="amount">Amount(CAD):</label>
-            <input
-              type="number"
-              id="amount"
-              name="amount"
-              value={formData.amount}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="description">Description:</label>
-            <input
-              type="text"
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="categoryId">Category:</label>
-            <select
-              id="categoryId"
-              name="categoryId"
-              value={formData.categoryId}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select a category</option>
-              <option value="1">Groceries</option>
-              <option value="2">Salary</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="frequencyId">Frequency:</label>
-            <select
-              id="frequencyId"
-              name="frequencyId"
-              value={formData.frequencyId}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select a frequency</option>
-              <option value="1">Daily</option>
-              <option value="2">Weekly</option>
-              <option value="3">Monthly</option>
-            </select>
-          </div>
-          <div>
-            <button type="submit">Add Transaction</button>
-          </div>
-        </form>
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-12 col-sm-8 col-md-6 col-lg-4">
+          <h2>Add Transaction</h2>
+          {transactionStatus === "success" ? (
+            <p className="text-success">Transaction is added</p>
+          ) : transactionStatus === "fail" ? (
+            <p className="text-danger">Transaction failed</p>
+          ) : null}
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="amount" className="form-label">
+                Amount(CAD):
+              </label>
+              <input
+                type="number"
+                id="amount"
+                name="amount"
+                value={formData.amount}
+                onChange={handleChange}
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="description" className="form-label">
+                Description:
+              </label>
+              <input
+                type="text"
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="categoryId" className="form-label">
+                Category:
+              </label>
+              <select
+                id="categoryId"
+                name="categoryId"
+                value={formData.categoryId}
+                onChange={handleChange}
+                className="form-select"
+                required
+              >
+                <option value="">Select a category</option>
+                <option value="1">Groceries</option>
+                <option value="2">Salary</option>
+              </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="frequencyId" className="form-label">
+                Frequency:
+              </label>
+              <select
+                id="frequencyId"
+                name="frequencyId"
+                value={formData.frequencyId}
+                onChange={handleChange}
+                className="form-select"
+                required
+              >
+                <option value="">Select a frequency</option>
+                <option value="1">Daily</option>
+                <option value="2">Weekly</option>
+                <option value="3">Monthly</option>
+              </select>
+            </div>
+            <div>
+              <button type="submit" className="btn btn-primary">
+                Add Transaction
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
