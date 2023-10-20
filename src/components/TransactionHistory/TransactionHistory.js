@@ -3,6 +3,7 @@ import { fetchTransactionHistory } from "../helper/transactionHistoryHelpers";
 import TransactionHistoryItem from "./TransactionHistoryItem";
 import api from "../../config/axios-config";
 import Cookies from "js-cookie";
+import TransactionHistoryTotal from "./TransactionHistoryTotal";
 
 function TransactionHistory() {
   const [transactionHistory, setTransactionHistory] = useState([]);
@@ -74,24 +75,28 @@ function TransactionHistory() {
   };
 
   return (
-    <div>
-      <h1>TransactionHistory</h1>
-      <div>
-        <p>Spending Total: {spendingTotal}</p>
-        <p>Income Total: {incomeTotal}</p>
-        <p>Current Balance: {currentBalance}</p>
-      </div>
-      {transactionHistory.length > 0 ? (
-        transactionHistory.map((transaction, index) => (
-          <TransactionHistoryItem
-            key={index}
-            transaction={transaction}
-            deleteTransaction={deleteTransaction}
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-12 col-sm-10 col-md-8 col-lg-6">
+          <h1 className="mt-4">Transaction History</h1>
+          <TransactionHistoryTotal
+            spendingTotal={spendingTotal}
+            incomeTotal={incomeTotal}
+            currentBalance={currentBalance}
           />
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
+          {transactionHistory.length > 0 ? (
+            transactionHistory.map((transaction, index) => (
+              <TransactionHistoryItem
+                key={index}
+                transaction={transaction}
+                deleteTransaction={deleteTransaction}
+              />
+            ))
+          ) : (
+            <p className="mt-4">Loading...</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
