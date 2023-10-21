@@ -43,39 +43,51 @@ function GoalForm({ setGoals }) {
   };
 
   return (
-    <div>
-      {" "}
-      <h2>Create a Goal</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Description:</label>
-          <input
-            type="text"
-            name="description"
-            value={goalData.description}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Goal Amount:</label>
-          <input
-            type="number"
-            name="goal_amount"
-            value={goalData.goal_amount}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Target Date:</label>
-          <input
-            type="datetime-local"
-            name="target_date"
-            value={goalData.target_date}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Create Goal</button>
-      </form>
+    <div className="card my-4">
+      <div className="card-body">
+        <h5 className="card-title">Create a Goal</h5>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="description" className="form-label">
+              Description:
+            </label>
+            <input
+              type="text"
+              name="description"
+              value={goalData.description}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="goal_amount" className="form-label">
+              Goal Amount:
+            </label>
+            <input
+              type="number"
+              name="goal_amount"
+              value={goalData.goal_amount}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="target_date" className="form-label">
+              Target Date (Year-Month-Day):
+            </label>
+            <input
+              type="date"
+              name="target_date"
+              value={goalData.target_date}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Create Goal
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

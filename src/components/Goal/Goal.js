@@ -74,21 +74,25 @@ function Goal() {
   };
 
   return (
-    <div>
-      <h1>Goals</h1>
-      <GoalForm setGoals={setGoals} />
-      {goals.length > 0 ? (
-        goals.map((goal, index) => (
-          <GoalItem
-            key={index}
-            goal={goal}
-            currentBalance={currentBalance}
-            deleteGoal={deleteGoal}
-          />
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-12 col-sm-8 col-md-6 col-lg-4">
+          <h1 className="mt-4">Goals</h1>
+          <GoalForm setGoals={setGoals} />
+          {goals.length > 0 ? (
+            goals.map((goal, index) => (
+              <GoalItem
+                key={index}
+                goal={goal}
+                currentBalance={currentBalance}
+                deleteGoal={deleteGoal}
+              />
+            ))
+          ) : (
+            <p className="mt-4">Loading...</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
