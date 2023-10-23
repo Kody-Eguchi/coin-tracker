@@ -17,15 +17,19 @@ function Navbar() {
 
         <div className="navbar" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <NavLink className="nav-link" to="/add-transaction">
-              Add Transaction
-            </NavLink>
-            <NavLink className="nav-link" to="/transaction-history">
-              Transaction History
-            </NavLink>
-            <NavLink className="nav-link" to="/goal">
-              Goal
-            </NavLink>
+            {isLoggedIn && (
+              <>
+                <NavLink className="nav-link" to="/add-transaction">
+                  Add Transaction
+                </NavLink>
+                <NavLink className="nav-link" to="/transaction-history">
+                  Transaction History
+                </NavLink>
+                <NavLink className="nav-link" to="/goal">
+                  Goal
+                </NavLink>
+              </>
+            )}
 
             {isLoggedIn ? (
               <>
