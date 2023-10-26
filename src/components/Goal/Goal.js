@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { fetchGoals } from "../helper/goalHelper";
+import { fetchGoals, deleteGoal } from "../helper/goalHelper";
 import GoalItem from "./GoalItem";
 import { fetchTransactionHistory } from "../helper/transactionHistoryHelpers";
 import GoalForm from "./GoalForm";
-import api from "../../config/axios-config";
-import Cookies from "js-cookie";
 
 function Goal() {
   const [goals, setGoals] = useState([]);
@@ -40,37 +38,8 @@ function Goal() {
     setCurrentBalance(newCurrentBalance);
   }, [transactionHistory]);
 
-  console.log(goals);
-  console.log(currentBalance);
-
-  // DELETE A GOAL BY ID FUNCTION
-  const deleteGoal = async (goalId) => {
-    setGoals((prevGoal) => prevGoal.filter((goal) => goal.goal_id !== goalId));
-
-    const token = Cookies.get("token");
-    try {
-      const response = await api.delete("/goal/delete", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        data: {
-          goal_id: goalId,
-        },
-      });
-
-      if (response.status === 200) {
-        console.log("Goal deleted successfully");
-
-        fetchGoals((data) => {
-          setGoals(data);
-        });
-      } else {
-        console.error("Error deleting goal");
-      }
-    } catch (error) {
-      console.error("Error deleting goal:", error);
-    }
+  const handleDeleteGoal = async (goalId) => {
+    deleteGoal(goalId, setGoals);
   };
 
   return (
@@ -85,7 +54,7 @@ function Goal() {
                 key={index}
                 goal={goal}
                 currentBalance={currentBalance}
-                deleteGoal={deleteGoal}
+                deleteGoal={handleDeleteGoal}
               />
             ))
           ) : (
